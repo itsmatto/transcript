@@ -13,7 +13,12 @@ public class Transcript {
   HashMap<String, List<String>> Courses,
   Integer StudentID) {
 
-
+    String name = Name;
+    Integer age = Age;
+    Integer yog = YearofGraduation;
+    Float gpa = GPA;
+    HashMap<String, List<String>> courses = Courses;
+    Integer studentid = StudentID;
 
   }
 
@@ -23,7 +28,7 @@ public class Transcript {
     List<String> values = new ArrayList<String>();
 
     Transcript matthew = new Transcript(
-    "Matt",
+    "Matthew Ballou",
     16,
     2018,
     4.0f,
