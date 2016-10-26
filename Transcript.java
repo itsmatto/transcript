@@ -14,7 +14,7 @@ public class Transcript {
   Integer yog;
   Float gpa;
   HashMap<String, Float> courses;
-  Integer studentid;
+  Integer studentID;
 
   public Transcript(
     String Name,
@@ -31,7 +31,7 @@ public class Transcript {
     yog = YearofGraduation;
     gpa = GPA;
     courses = Courses;
-    studentid = StudentID;
+    studentID = StudentID;
 
   }
 
@@ -59,41 +59,19 @@ public class Transcript {
   public static void makeTranscript(HashMap<String, Float> Courses, Transcript Student) throws FileNotFoundException {
 
     PrintWriter writer = new PrintWriter(new File("transcript.csv"));
-    StringBuilder sb = new StringBuilder();
 
     HashMap<String, Float> courses = Courses;
     Transcript student = Student;
 
-    sb.append("Name");
-    sb.append(',');
-    sb.append("Age");
-    sb.append(',');
-    sb.append("Year of Graduation");
-    sb.append(',');
-    sb.append("GPA");
-    sb.append(',');
-    sb.append("Student ID");
-    sb.append('\n');
-
-    sb.append(student.name);
-    sb.append(',');
-    sb.append(student.age);
-    sb.append(',');
-    sb.append(student.yog);
-    sb.append(',');
-    sb.append(averageGPA(student.courses));
-    sb.append(',');
-    sb.append(student.studentid);
-    sb.append('\n');
+    String sb = "Name, Age, Year of Graduation, GPA, Student ID\n";
+    sb += student.name + "," + student.age + "," + student.yog + ","
+      + averageGPA(student.courses) + "," + student.studentID + "\n";
 
     for(String course : student.courses.keySet()) {
-      sb.append(course);
-      sb.append(",");
-      sb.append(student.courses.get(course));
-      sb.append('\n');
+      sb += course + "," + student.courses.get(course) + "\n";
     }
 
-    writer.write(sb.toString());
+    writer.write(sb);
     writer.close();
 
   }
@@ -123,7 +101,7 @@ public class Transcript {
     System.out.println(matt.age);
     System.out.println(matt.yog);
     System.out.println(averageGPA(courses));
-    System.out.println(matt.studentid);
+    System.out.println(matt.studentID);
 
     for(String course : courses.keySet()) {
       System.out.println(course + ": " + courses.get(course));
