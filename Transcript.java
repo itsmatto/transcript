@@ -62,6 +62,23 @@ public class Transcript {
 
     HashMap<String, Float> courses = Courses;
     Transcript student = Student;
+    HashMap<String, Boolean> credits = new HashMap<String, Boolean>();
+    Integer creditsNum = 0;
+    Boolean graduated = false;
+
+    for(String course : student.courses.keySet()) {
+      if(courses.get(course) >= 65) {
+        credits.put(course, true);
+        creditsNum++;
+      }
+      else {
+        credits.put(course, false);
+      }
+    }
+
+    if(creditsNum > 5) {
+      graduated = true;
+    }
 
     String sb = "Name, Age, Year of Graduation, GPA, Student ID\n";
     sb += student.name + "," + student.age + "," + student.yog + ","
@@ -70,6 +87,9 @@ public class Transcript {
     for(String course : student.courses.keySet()) {
       sb += course + "," + student.courses.get(course) + "\n";
     }
+
+    sb += "Credits: " + creditsNum + "\n" +
+          "Graduated? " + graduated + "\n";
 
     writer.write(sb);
     writer.close();
@@ -92,9 +112,9 @@ public class Transcript {
 
     courses.put("Programming II",       96.0f);
     courses.put("Chemistry",            98.0f);
-    courses.put("U.S. History",         92.0f);
-    courses.put("English Composition",  92.0f);
-    courses.put("Pre-Calculus",         98.0f);
+    courses.put("U.S. History",         94.0f);
+    courses.put("English Composition",  94.0f);
+    courses.put("Pre-Calculus",         97.0f);
     courses.put("Spanish III",          91.0f);
 
     System.out.println(matt.name);
@@ -110,6 +130,7 @@ public class Transcript {
     try {
       makeTranscript(courses, matt);
       System.out.println("Transcript successfully made in this directory.");
+      System.out.println("Check the transcript to see credits and graduation.");
     }
     catch (Exception e) {
       System.out.println("Transcript has not been made or updated. See the error below.");
